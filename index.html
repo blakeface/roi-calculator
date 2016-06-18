@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="roi">
+<html ng-app="roi" ng-cloak>
 <head>
   <meta charset="utf-8">
   <title>ROI Calculator</title>
@@ -10,12 +10,69 @@
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
 
 </head>
 <body>
-  <p>
-    hi
-  </p>
+  <div class="container">
+    <h1>ROI Calculator</h1>
+
+    <h3>Revenue Items</h3>
+    <form ng-submit="addRevenue()">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>One-Time</th>
+            <th>Monthly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Item 1</th>
+            <td><input type="text" name="single1"></td>
+            <td><input type="text" name="monthly1"></td>
+          </tr>
+          <tr>
+            <th>Item 2</th>
+            <td><input type="text" name="single2"></td>
+            <td><input type="text" name="monthly2"></td>
+          </tr>
+          <tr>
+            <th>Item 3</th>
+            <td><input type="text" name="single3"></td>
+            <td><input type="text" name="monthly3"></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit" value="Add Revenue Items">
+    </form>
+
+    <h3>Expense Items</h3>
+    <form ng-submit="addExpenses">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>One-Time</th>
+            <th>Monthly</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Expense 1</th>
+            <td><input type="text" name="single1"></td>
+            <td><input type="text" name="monthly1"></td>
+          </tr>
+          <tr>
+            <th>Expense 2</th>
+            <td><input type="text" name="single2"></td>
+            <td><input type="text" name="monthly2"></td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="submit" value="Add Expense Items">
+    </form>
+  </div>
 </body>
 </html>
