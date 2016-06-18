@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
 
 </head>
-<body>
+<body ng-controller="MainCtrl as vm">
   <div class="container">
     <h1>ROI Calculator</h1>
 
     <h3>Revenue Items</h3>
-    <form ng-submit="addRevenue()">
+    <form ng-submit="vm.addRevenue()">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -29,31 +29,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>Item 1</th>
-            <td><input type="text" name="single1"></td>
-            <td><input type="text" name="monthly1"></td>
-            <td><input type="button" value="Delete" ng-click="delete()"></td>
-          </tr>
-          <tr>
-            <th>Item 2</th>
-            <td><input type="text" name="single2"></td>
-            <td><input type="text" name="monthly2"></td>
-            <td><input type="button" value="Delete" ng-click="delete()"></td>
-          </tr>
-          <tr>
-            <th>Item 3</th>
-            <td><input type="text" name="single3"></td>
-            <td><input type="text" name="monthly3"></td>
-            <td><input type="button" value="Delete" ng-click="delete()"></td>
+          <tr ng-repeat="item in vm.items">
+            {{item}}
+            <th>Item {{item}}</th>
+            <td><input type="text" name="single{{item}}"></td>
+            <td><input type="text" name="monthly{{item}}"></td>
+            <td><span class="glyphicon glyphicon-trash" ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
-      <input type="submit" value="Add Revenue Items">
+      <input type="submit" class="btn btn-primary" value="Add Revenue Items">
     </form>
 
     <h3>Expense Items</h3>
-    <form ng-submit="addExpenses">
+    <form ng-submit="vm.addExpenses">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -64,21 +53,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>Expense 1</th>
-            <td><input type="text" name="single1"></td>
-            <td><input type="text" name="monthly1"></td>
-            <td><input type="button" value="Delete" ng-click="delete()"></td>
-          </tr>
-          <tr>
-            <th>Expense 2</th>
-            <td><input type="text" name="single2"></td>
-            <td><input type="text" name="monthly2"></td>
-            <td><input type="button" value="Delete" ng-click="delete()"></td>
+          <tr ng-repeat="expense in vm.expenses">
+            <th>Expense {{expense}}</th>
+            <td><input type="text" name="single{{expense}}"></td>
+            <td><input type="text" name="monthly{{expense}}"></td>
+            <td><span class="glyphicon glyphicon-trash" ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
-      <input type="submit" value="Add Expense Items">
+      <input type="submit" class="btn btn-primary" value="Add Expense Items">
     </form>
 
     <table>
