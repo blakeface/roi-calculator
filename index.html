@@ -32,9 +32,9 @@
           <tr ng-repeat="item in vm.revenueItems">
             {{item}}
             <th>Item {{item}}</th>
-            <td><input type="text"
+            <td><input type="number"
               name="single{{item}}" ng-model="vm.revenue.single[$index]"></td>
-            <td><input type="text"
+            <td><input type="number"
               name="monthly{{item}}" ng-model="vm.revenue.monthly[$index]"></td>
             <td><span class="glyphicon glyphicon-trash"
               ng-click="vm.delete()"></span></td>
@@ -49,7 +49,7 @@
     </form>
 
     <h3>Expense Items</h3>
-    <form ng-submit="vm.addExpenses" name="vm.expense" novalidate>
+    <form ng-submit="vm.addExpenses()" name="vm.expense" novalidate>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -62,9 +62,9 @@
         <tbody>
           <tr ng-repeat="expense in vm.expenseItems">
             <th>Expense {{expense}}</th>
-            <td><input type="text"
+            <td><input type="number"
               name="single{{expense}}" ng-model="vm.expense.single[$index]"></td>
-            <td><input type="text"
+            <td><input type="number"
               name="monthly{{expense}}" ng-model="vm.expense.monthly[$index]"></td>
             <td><span class="glyphicon glyphicon-trash"
               ng-click="vm.delete()"></span></td>
@@ -79,7 +79,7 @@
     </form>
 
     <h3>Totals</h3>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th></th>
@@ -91,28 +91,28 @@
       <tbody>
         <tr>
           <th>Revenue</th>
-          <td>{{vm.total.revenue.single}}</td>
-          <td>{{vm.total.revenue.monthly}}</td>
+          <td>{{vm.revenueSingle}}</td>
+          <td>{{vm.revenueMonthly}}</td>
+          <td>{{vm.revenueTotal}}</td>
         </tr>
         <tr>
           <th>Expenses</th>
-          <td>{{vm.total.expenses.single}}</td>
-          <td>{{vm.total.expenses.monthly}}</td>
+          <td>{{vm.expenseSingle}}</td>
+          <td>{{vm.expenseMonthly}}</td>
+          <td>{{vm.expenseTotal}}</td>
         </tr>
         <tr>
           <th>Contribution Profits</th>
-          <td>{{vm.total.contributionProfits.single}}</td>
-          <td>{{vm.total.contributionProfits.monthly}}</td>
+          <td>{{vm.profitsMonthly}}</td>
+          <td>{{vm.profitsTotal}}</td>
         </tr>
         <tr>
           <th>Contribution Margin</th>
-          <td>{{vm.total.contributionMargin.single}}</td>
-          <td>{{vm.total.contributionMargin.monthly}}</td>
+          <td>{{vm.margin}}</td>
         </tr>
         <tr>
           <th>Capital ROI (Months)</th>
-          <td>{{vm.total.roi.single}}</td>
-          <td>{{vm.total.roi.monthly}}</td>
+          <td>{{vm.roi}}</td>
         </tr>
       </tbody>
     </table>
