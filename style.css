@@ -1,0 +1,8 @@
+.table-footer {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.table-footer span{
+  margin-bottom: 15px;
+}

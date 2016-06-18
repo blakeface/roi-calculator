@@ -18,7 +18,7 @@
     <h1>ROI Calculator</h1>
 
     <h3>Revenue Items</h3>
-    <form ng-submit="vm.addRevenue()">
+    <form ng-submit="vm.addRevenue()" novalidate>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -29,20 +29,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in vm.items">
+          <tr ng-repeat="item in vm.revenueItems">
             {{item}}
             <th>Item {{item}}</th>
-            <td><input type="text" name="single{{item}}"></td>
-            <td><input type="text" name="monthly{{item}}"></td>
-            <td><span class="glyphicon glyphicon-trash" ng-click="vm.delete()"></span></td>
+            <td><input type="text"
+              name="single{{item}}" ng-model="vm.revenue.single[$index]"></td>
+            <td><input type="text"
+              name="monthly{{item}}" ng-model="vm.revenue.monthly[$index]"></td>
+            <td><span class="glyphicon glyphicon-trash"
+              ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
-      <input type="submit" class="btn btn-primary" value="Add Revenue Items">
+      <div class="table-footer">
+        <span class="glyphicon glyphicon-plus-sign"
+          ng-click="vm.add()">Add a revenue item</span>
+        <input type="submit" class="btn btn-primary" value="Calculate Revenue Items">
+      </div>
     </form>
 
     <h3>Expense Items</h3>
-    <form ng-submit="vm.addExpenses">
+    <form ng-submit="vm.addExpenses" name="vm.expense" novalidate>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -53,17 +60,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="expense in vm.expenses">
+          <tr ng-repeat="expense in vm.expenseItems">
             <th>Expense {{expense}}</th>
-            <td><input type="text" name="single{{expense}}"></td>
-            <td><input type="text" name="monthly{{expense}}"></td>
-            <td><span class="glyphicon glyphicon-trash" ng-click="vm.delete()"></span></td>
+            <td><input type="text"
+              name="single{{expense}}" ng-model="vm.expense.single[$index]"></td>
+            <td><input type="text"
+              name="monthly{{expense}}" ng-model="vm.expense.monthly[$index]"></td>
+            <td><span class="glyphicon glyphicon-trash"
+              ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
-      <input type="submit" class="btn btn-primary" value="Add Expense Items">
+      <div class="table-footer">
+        <span class="glyphicon glyphicon-plus-sign"
+          ng-click="vm.add()">Add an expense item</span>
+        <input type="submit" class="btn btn-primary" value="Calculate Expense Items">
+      </div>
     </form>
 
+    <h3>Totals</h3>
     <table>
       <thead>
         <tr>
@@ -76,18 +91,28 @@
       <tbody>
         <tr>
           <th>Revenue</th>
+          <td>{{vm.total.revenue.single}}</td>
+          <td>{{vm.total.revenue.monthly}}</td>
         </tr>
         <tr>
           <th>Expenses</th>
+          <td>{{vm.total.expenses.single}}</td>
+          <td>{{vm.total.expenses.monthly}}</td>
         </tr>
         <tr>
           <th>Contribution Profits</th>
+          <td>{{vm.total.contributionProfits.single}}</td>
+          <td>{{vm.total.contributionProfits.monthly}}</td>
         </tr>
         <tr>
           <th>Contribution Margin</th>
+          <td>{{vm.total.contributionMargin.single}}</td>
+          <td>{{vm.total.contributionMargin.monthly}}</td>
         </tr>
         <tr>
           <th>Capital ROI (Months)</th>
+          <td>{{vm.total.roi.single}}</td>
+          <td>{{vm.total.roi.monthly}}</td>
         </tr>
       </tbody>
     </table>

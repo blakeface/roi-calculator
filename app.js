@@ -7,16 +7,18 @@
     .module('roi', dependencies)
     .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope']
-  function MainCtrl($scope) {
+  MainCtrl.$inject = []
+  function MainCtrl() {
     let vm = this;
 
-    vm.items = [1,2,3];
-    vm.expenses = [1,2];
+    vm.revenueItems = [1,2,3];
+    vm.expenseItems = [1,2];
 
     vm.delete = function () {};
 
-    vm.addRevenue = function () {};
+    vm.addRevenue = function () {
+      console.log(vm.revenue);
+    };
     vm.addExpenses = function () {};
   }
 
