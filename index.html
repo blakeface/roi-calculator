@@ -25,6 +25,7 @@
             <th></th>
             <th>One-Time</th>
             <th>Monthly</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -32,16 +33,19 @@
             <th>Item 1</th>
             <td><input type="text" name="single1"></td>
             <td><input type="text" name="monthly1"></td>
+            <td><input type="button" value="Delete" ng-click="delete()"></td>
           </tr>
           <tr>
             <th>Item 2</th>
             <td><input type="text" name="single2"></td>
             <td><input type="text" name="monthly2"></td>
+            <td><input type="button" value="Delete" ng-click="delete()"></td>
           </tr>
           <tr>
             <th>Item 3</th>
             <td><input type="text" name="single3"></td>
             <td><input type="text" name="monthly3"></td>
+            <td><input type="button" value="Delete" ng-click="delete()"></td>
           </tr>
         </tbody>
       </table>
@@ -56,6 +60,7 @@
             <th></th>
             <th>One-Time</th>
             <th>Monthly</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -63,16 +68,46 @@
             <th>Expense 1</th>
             <td><input type="text" name="single1"></td>
             <td><input type="text" name="monthly1"></td>
+            <td><input type="button" value="Delete" ng-click="delete()"></td>
           </tr>
           <tr>
             <th>Expense 2</th>
             <td><input type="text" name="single2"></td>
             <td><input type="text" name="monthly2"></td>
+            <td><input type="button" value="Delete" ng-click="delete()"></td>
           </tr>
         </tbody>
       </table>
       <input type="submit" value="Add Expense Items">
     </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>One-Time</th>
+          <th>Monthly</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Revenue</th>
+        </tr>
+        <tr>
+          <th>Expenses</th>
+        </tr>
+        <tr>
+          <th>Contribution Profits</th>
+        </tr>
+        <tr>
+          <th>Contribution Margin</th>
+        </tr>
+        <tr>
+          <th>Capital ROI (Months)</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </body>
 </html>
