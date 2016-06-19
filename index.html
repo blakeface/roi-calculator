@@ -32,18 +32,24 @@
           <tr ng-repeat="item in vm.revenueItems">
             {{item}}
             <th>Item {{item}}</th>
-            <td><input type="number"
-              name="single{{item}}" ng-model="vm.revenue.single[$index]"></td>
-            <td><input type="number"
-              name="monthly{{item}}" ng-model="vm.revenue.monthly[$index]"></td>
+            <td><input type="number" name="single{{item}}"
+              ng-model="vm.revenueSingle[$index]" value="0.00"></td>
+            <td><input type="number" name="monthly{{item}}"
+              ng-model="vm.revenueMonthly[$index]" value="0.00"></td>
             <td><span class="glyphicon glyphicon-trash"
               ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
       <div class="table-footer">
-        <span class="glyphicon glyphicon-plus-sign"
-          ng-click="vm.add()">Add a revenue item</span>
+        <div class="manipulate-list" ng-click="vm.addRevenueItem()">
+          <span class="glyphicon glyphicon-plus-sign"></span>
+          <p>Add a revenue item</p>
+        </div>
+        <div class="manipulate-list" ng-click="vm.removeRevenueItem()">
+          <span class="glyphicon glyphicon-minus-sign"></span>
+          <p>Remove a revenue item</p>
+        </div>
         <input type="submit" class="btn btn-primary" value="Calculate Revenue Items">
       </div>
     </form>
@@ -62,18 +68,24 @@
         <tbody>
           <tr ng-repeat="expense in vm.expenseItems">
             <th>Expense {{expense}}</th>
-            <td><input type="number"
-              name="single{{expense}}" ng-model="vm.expense.single[$index]"></td>
-            <td><input type="number"
-              name="monthly{{expense}}" ng-model="vm.expense.monthly[$index]"></td>
+            <td><input type="number" name="single{{expense}}"
+              ng-model="vm.expenseSingle[$index]" value="0.00"></td>
+            <td><input type="number" name="monthly{{expense}}"
+              ng-model="vm.expenseMonthly[$index]" value="0.00"></td>
             <td><span class="glyphicon glyphicon-trash"
               ng-click="vm.delete()"></span></td>
           </tr>
         </tbody>
       </table>
       <div class="table-footer">
-        <span class="glyphicon glyphicon-plus-sign"
-          ng-click="vm.add()">Add an expense item</span>
+        <div class="manipulate-list" ng-click="vm.addExpenseItem()">
+          <span class="glyphicon glyphicon-plus-sign"></span>
+          <p>Add an expense item</p>
+        </div>
+        <div class="manipulate-list" ng-click="vm.removeExpenseItem()">
+          <span class="glyphicon glyphicon-minus-sign"></span>
+          <p>Remove an expense item</p>
+        </div>
         <input type="submit" class="btn btn-primary" value="Calculate Expense Items">
       </div>
     </form>

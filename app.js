@@ -7,8 +7,8 @@
   .module('roi', dependencies)
   .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = []
-  function MainCtrl() {
+  MainCtrl.$inject = ['$scope']
+  function MainCtrl($scope) {
     let vm = this;
 
     vm.revenueItems = [1,2,3];
@@ -28,23 +28,45 @@
     vm.margin = vm.profitsTotal / vm.revenueTotal;
     vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
 
-    vm.delete = function () {};
+    vm.addRevenueItem = function () {
+      vm.revenueItems.push(vm.revenueItems.length + 1);
+    }
+    vm.addExpenseItem = function () {
+      vm.expenseItems.push(vm.expenseItems.length + 1);
+    }
+    vm.removeRevenueItem = function () {
+      vm.revenueItems.splice(vm.revenueItems.length - 1, 1);
+    }
+    vm.removeExpenseItem = function () {
+      vm.expenseItems.splice(vm.expenseItems.length - 1, 1);
+      console.log(vm.expenseItems.length);
+    }
 
-    vm.addRevenue = function () {
-      for (let amount in vm.revenue.single)
-        vm.revenueSingle += +vm.revenue.single[amount];
-      for (let amount in vm.revenue.monthly)
-        vm.revenueMonthly += +vm.revenue.monthly[amount];
-      vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
-    };
+    // $scope.$watch(function(){
+    //   for (let amount in vm.revenueSingle) {
+    //     // console.log(vm.revenueSingle[amount]);
+    //     'vm.revenueSingle[amount]';
+    //   }
+    // }, function (newValue) {
+    //   console.log(newValue);
+    //   vm.revenueSingle += newValue;
+    // });
 
-    vm.addExpenses = function () {
-      for (let amount in vm.expense.single)
-        vm.expenseSingle += +vm.expense.single[amount];
-      for (let amount in vm.expense.monthly)
-        vm.expenseMonthly += +vm.expense.monthly[amount];
-      vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
-    };
+    // vm.addRevenue = function () {
+    //   for (let amount in vm.revenue.single)
+    //     vm.revenueSingle += +vm.revenue.single[amount];
+    //   for (let amount in vm.revenue.monthly)
+    //     vm.revenueMonthly += +vm.revenue.monthly[amount];
+    //   vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
+    // };
+    //
+    // vm.addExpenses = function () {
+    //   for (let amount in vm.expense.single)
+    //     vm.expenseSingle += +vm.expense.single[amount];
+    //   for (let amount in vm.expense.monthly)
+    //     vm.expenseMonthly += +vm.expense.monthly[amount];
+    //   vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
+    // };
 
   }
 })()

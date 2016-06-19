@@ -3,6 +3,16 @@
   flex-flow: column nowrap;
 }
 
-.table-footer span{
-  margin-bottom: 15px;
+.manipulate-list{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+}
+
+.manipulate-list p:hover, .manipulate-list span:hover {
+  cursor: pointer;
+}
+
+.manipulate-list span {
+  margin-right: 5px;
 }
