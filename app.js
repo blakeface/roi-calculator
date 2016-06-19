@@ -50,15 +50,15 @@
       console.log(vm.expenseItems.length);
     }
 
-    // $scope.$watch(function(){
-    //   for (let amount in vm.revenueSingle) {
-    //     // console.log(vm.revenueSingle[amount]);
-    //     'vm.revenueSingle[amount]';
-    //   }
-    // }, function (newValue) {
-    //   console.log(newValue);
-    //   vm.revenueSingle += newValue;
-    // });
+    $scope.$watch(function(){
+      for (let amount in vm.revenueSingle) {
+        console.log(vm.revenueSingle[amount]);
+        'vm.revenueSingle[amount]';
+      }
+    }, function (newValue) {
+      console.log(newValue);
+      vm.revenueSingle += newValue;
+    });
 
     // vm.addRevenue = function () {
     //   for (let amount in vm.revenue.single)
