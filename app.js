@@ -28,6 +28,14 @@
     vm.margin = vm.profitsTotal / vm.revenueTotal;
     vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
 
+    vm.clearRevenue = function (i) {
+      vm.revenueSingle[i] = 0;
+      vm.revenueMonthly[i] = 0;
+    }
+    vm.clearExpense = function (i) {
+      vm.expenseSingle[i] = 0;
+      vm.expenseMonthly[i] = 0;
+    }
     vm.addRevenueItem = function () {
       vm.revenueItems.push(vm.revenueItems.length + 1);
     }

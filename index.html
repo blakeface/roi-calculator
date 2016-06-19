@@ -37,16 +37,16 @@
             <td><input type="number" name="monthly{{item}}"
               ng-model="vm.revenueMonthly[$index]" value="0.00"></td>
             <td><span class="glyphicon glyphicon-trash"
-              ng-click="vm.delete()"></span></td>
+              ng-click="vm.clearRevenue($index)"></span></td>
           </tr>
         </tbody>
       </table>
       <div class="table-footer">
-        <div class="manipulate-list" ng-click="vm.addRevenueItem()">
+        <div class="list-button-wrapper" ng-click="vm.addRevenueItem()">
           <span class="glyphicon glyphicon-plus-sign"></span>
           <p>Add a revenue item</p>
         </div>
-        <div class="manipulate-list" ng-click="vm.removeRevenueItem()">
+        <div class="list-button-wrapper" ng-click="vm.removeRevenueItem()">
           <span class="glyphicon glyphicon-minus-sign"></span>
           <p>Remove a revenue item</p>
         </div>
@@ -73,16 +73,16 @@
             <td><input type="number" name="monthly{{expense}}"
               ng-model="vm.expenseMonthly[$index]" value="0.00"></td>
             <td><span class="glyphicon glyphicon-trash"
-              ng-click="vm.delete()"></span></td>
+              ng-click="vm.clearExpense($index)"></span></td>
           </tr>
         </tbody>
       </table>
       <div class="table-footer">
-        <div class="manipulate-list" ng-click="vm.addExpenseItem()">
+        <div class="list-button-wrapper" ng-click="vm.addExpenseItem()">
           <span class="glyphicon glyphicon-plus-sign"></span>
           <p>Add an expense item</p>
         </div>
-        <div class="manipulate-list" ng-click="vm.removeExpenseItem()">
+        <div class="list-button-wrapper" ng-click="vm.removeExpenseItem()">
           <span class="glyphicon glyphicon-minus-sign"></span>
           <p>Remove an expense item</p>
         </div>

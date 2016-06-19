@@ -3,16 +3,16 @@
   flex-flow: column nowrap;
 }
 
-.manipulate-list{
+.list-button-wrapper{
   display: flex;
   flex-flow: row nowrap;
   align-items: baseline;
 }
 
-.manipulate-list p:hover, .manipulate-list span:hover {
+.list-button-wrapper p:hover, .list-button-wrapper span:hover {
   cursor: pointer;
 }
 
-.manipulate-list span {
+.list-button-wrapper span {
   margin-right: 5px;
 }
