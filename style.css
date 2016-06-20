@@ -3,16 +3,6 @@
   flex-flow: column nowrap;
 }
 
-.list-button-wrapper{
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: baseline;
-}
-
-.list-button-wrapper p:hover, .list-button-wrapper span:hover {
+.glyphicon-trash {
   cursor: pointer;
-}
-
-.list-button-wrapper span {
-  margin-right: 5px;
 }

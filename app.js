@@ -11,8 +11,8 @@
   function MainCtrl($scope) {
     let vm = this;
 
-    vm.revenueItems = [1,2,3];
-    vm.expenseItems = [1,2];
+    vm.revenueItems = [1];
+    vm.expenseItems = [1];
 
     vm.revenueSingle = 0;
     vm.revenueMonthly = 0;
@@ -28,35 +28,26 @@
     vm.margin = vm.profitsTotal / vm.revenueTotal;
     vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
 
-    vm.clearRevenue = function (i) {
-      vm.revenueSingle[i] = 0;
-      vm.revenueMonthly[i] = 0;
-    }
-    vm.clearExpense = function (i) {
-      vm.expenseSingle[i] = 0;
-      vm.expenseMonthly[i] = 0;
-    }
     vm.addRevenueItem = function () {
-      vm.revenueItems.push(vm.revenueItems.length + 1);
+      vm.revenueItems.push(vm.revenueItems[vm.revenueItems.length - 1] + 1)
     }
     vm.addExpenseItem = function () {
-      vm.expenseItems.push(vm.expenseItems.length + 1);
+      vm.expenseItems.push(vm.expenseItems[vm.expenseItems.length - 1] + 1)
     }
-    vm.removeRevenueItem = function () {
-      vm.revenueItems.splice(vm.revenueItems.length - 1, 1);
+    vm.removeRevenueItem = function (i) {
+      if (vm.revenueItems.length > 1)
+        vm.revenueItems.splice(i, 1);
     }
-    vm.removeExpenseItem = function () {
-      vm.expenseItems.splice(vm.expenseItems.length - 1, 1);
-      console.log(vm.expenseItems.length);
+    vm.removeExpenseItem = function (i) {
+      if (vm.expenseItems.length > 1)
+        vm.expenseItems.splice(i, 1);
     }
 
     $scope.$watch(function(){
       for (let amount in vm.revenueSingle) {
-        console.log(vm.revenueSingle[amount]);
         'vm.revenueSingle[amount]';
       }
     }, function (newValue) {
-      console.log(newValue);
       vm.revenueSingle += newValue;
     });
 
