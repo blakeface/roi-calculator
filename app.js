@@ -10,11 +10,7 @@
   MainCtrl.$inject = ['$scope']
   function MainCtrl($scope) {
     let vm = this;
-
-    vm.revenueItems = [{single: '400', monthly: '300'}];
-    vm.expenseItems = [{single: '150', monthly: '75'}];
-
-    vm.revenueSingle = 0;
+    vm.revenueSingle = 0
     vm.revenueMonthly = 0;
     vm.revenueTotal = 0;
 
@@ -22,53 +18,69 @@
     vm.expenseMonthly = 0;
     vm.expenseTotal = 0;
 
-    vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
-    vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
+    vm.revenueItems = [
+      {single: '636.02', monthly: '300'},
+      {single: '539.25', monthly: '250'},
+      {single: '200.99', monthly: '100'},
+    ];
+    vm.expenseItems = [
+      {single: '79.92', monthly: '75'},
+      {single: '103.22', monthly: '105'},
+    ];
 
-    vm.margin = vm.profitsTotal / vm.revenueTotal;
-    vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
-
-    vm.addRevenue = function () {
+    vm.addRevenueItem = function () {
       let newRevenue = {};
-      newRevenue.single = $scope.newRevenue.single;
-      newRevenue.monthly = $scope.newRevenue.monthly;
+      if ($scope.newRevenue.single) newRevenue.single = $scope.newRevenue.single;
+      else newRevenue.single = 0;
+
+      if ($scope.newRevenue.monthly) newRevenue.monthly = $scope.newRevenue.monthly;
+      else newRevenue.monthly = 0;
+
       vm.revenueItems.push(newRevenue);
+      $scope.newRevenue = {};
     }
     vm.addExpenseItem = function () {
-      vm.expenseItems.push(vm.expenseItems.length + 1)
+      let newExpense = {};
+      if ($scope.newExpense.single) newExpense.single = $scope.newExpense.single;
+      else newExpense.single = 0;
+      if ($scope.newExpense.monthly) newExpense.monthly = $scope.newExpense.monthly;
+      else newExpense.monthly = 0;
+      vm.expenseItems.push(newExpense);
+      $scope.newExpense = {};
     }
     vm.removeRevenueItem = function (i) {
-      if (vm.revenueItems.length > 1)
       vm.revenueItems.splice(i, 1);
     }
     vm.removeExpenseItem = function (i) {
-      if (vm.expenseItems.length > 1)
       vm.expenseItems.splice(i, 1);
     }
 
-    $scope.$watch(function(){
-      for (let amount in vm.revenueSingle) {
-        'vm.revenueSingle[amount]';
+    $scope.$watch('vm.revenueItems', function () {
+      for (let i = 0; i < vm.revenueItems.length; i++) {
+        vm.revenueSingle += +vm.revenueItems[i].single;
       }
-    }, function (newValue) {
-      vm.revenueSingle += newValue;
+      for (let i = 0; i < vm.revenueItems.length; i++) {
+        vm.revenueMonthly += +vm.revenueItems[i].monthly;
+      }
+      vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
+      vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
+      vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
+      vm.margin = vm.profitsTotal / vm.revenueTotal;
+      vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
+    }, true);
+
+    $scope.$watch('vm.expenseItems', function () {
+      for (let i = 0; i < vm.expenseItems.length; i++) {
+        vm.expenseSingle += +vm.expenseItems[i].single;
+      }
+      for (let i = 0; i < vm.expenseItems.length; i++) {
+        vm.expenseMonthly += +vm.expenseItems[i].monthly;
+      }
+      vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
+      vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
+      vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
+      vm.margin = vm.profitsTotal / vm.revenueTotal;
+      vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
     });
-
-    // vm.addRevenue = function () {
-    //   for (let amount in vm.revenue.single)
-    //     vm.revenueSingle += +vm.revenue.single[amount];
-    //   for (let amount in vm.revenue.monthly)
-    //     vm.revenueMonthly += +vm.revenue.monthly[amount];
-    //   vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
-    // };
-    //
-    // vm.addExpenses = function () {
-    //   for (let amount in vm.expense.single)
-    //     vm.expenseSingle += +vm.expense.single[amount];
-    //   for (let amount in vm.expense.monthly)
-    //     vm.expenseMonthly += +vm.expense.monthly[amount];
-    //   vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
-    // };
-
   }
 })()

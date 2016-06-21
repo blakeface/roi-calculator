@@ -24,7 +24,6 @@
             <th></th>
             <th>One-Time</th>
             <th>Monthly</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -36,12 +35,12 @@
               ng-click="vm.removeRevenueItem($index)"></span></td>
           </tr>
           <tr>
-            <form name="newRevenue" ng-submit="vm.addRevenue()" novalidate>
+            <form name="newRevenue" ng-submit="vm.addRevenueItem()">
               <th>New Revenue Item</th>
               <td><input type="number" name="newRevenue.single"
-                ng-model="newRevenue.single" required></td>
+                ng-model="newRevenue.single"></td>
               <td><input type="number" name="newRevenue.monthly"
-                ng-model="newRevenue.monthly" required></td>
+                ng-model="newRevenue.monthly"></td>
               <td><input type="submit" class="btn btn-primary-outline" value="Add Revenue Item"></td>
             </form>
           </tr>
@@ -55,7 +54,6 @@
             <th></th>
             <th>One-Time</th>
             <th>Monthly</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -63,17 +61,16 @@
             <th>Expense {{$index + 1}}</th>
             <td>{{expense.single | currency}}</td>
             <td>{{expense.monthly | currency}}</td>
-            <td></td>
             <td><span class="glyphicon glyphicon-trash"
               ng-click="vm.removeExpenseItem($index)"></span></td>
           </tr>
           <tr>
-            <form name="newExpense" ng-submit="vm.addExpenses()" novalidate>
+            <form name="newExpense" ng-submit="vm.addExpenseItem()">
               <th>New Expense Item</th>
-              <td><input type="number"
-                ng-model="newExpense.single" name="single"></td>
-              <td><input type="number"
-                ng-model="newExpense.monthly" name="monthly"></td>
+              <td><input type="number" name="newExpense.single"
+                ng-model="newExpense.single"></td>
+              <td><input type="number" name="newExpense.monthly"
+                ng-model="newExpense.monthly"></td>
               <td><input type="submit" class="btn btn-primary-outline" value="Add Expense Item"></td>
             </form>
           </tr>
@@ -93,37 +90,34 @@
       <tbody>
         <tr>
           <th>Revenue</th>
-          <td>{{vm.revenueSingle}}</td>
-          <td>{{vm.revenueMonthly}}</td>
-          <td>{{vm.revenueTotal}}</td>
+          <td>{{vm.revenueSingle | currency}}</td>
+          <td>{{vm.revenueMonthly | currency}}</td>
+          <td>{{vm.revenueTotal | currency}}</td>
         </tr>
         <tr>
           <th>Expenses</th>
-          <td>{{vm.expenseSingle}}</td>
-          <td>{{vm.expenseMonthly}}</td>
-          <td>{{vm.expenseTotal}}</td>
+          <td>{{vm.expenseSingle | currency}}</td>
+          <td>{{vm.expenseMonthly | currency}}</td>
+          <td>{{vm.expenseTotal | currency}}</td>
         </tr>
-      </tbody>
-    </table>
-    <table class="table table-striped">
-      <tbody>
+        <tr>
+          <th>Contribution Profits</th>
+          <td></td>
+          <td>{{vm.profitsMonthly | currency}}</td>
+          <td>{{vm.profitsTotal | currency}}</td>
+        </tr>
+        <tr id="break-row"></tr>
         <tr>
           <td></td>
-          <th>Contribution Profits</th>
-          <td>{{vm.profitsMonthly}}</td>
-          <td>{{vm.profitsTotal}}</td>
-        </tr>
-        <tr>
           <td></td>
           <th>Contribution Margin</th>
-          <td></td>
-          <td>{{vm.margin}}</td>
+          <td>{{vm.margin | number:2}}%</td>
         </tr>
         <tr>
           <td></td>
-          <th>Capital ROI (Months)</th>
           <td></td>
-          <td>{{vm.roi}}</td>
+          <th>Capital ROI (Months)</th>
+          <td>{{vm.roi | number:1}}</td>
         </tr>
     </tbody>
     </table>

@@ -6,3 +6,7 @@
 .glyphicon-trash {
   cursor: pointer;
 }
+
+#break-row {
+  height: 30px;
+}
