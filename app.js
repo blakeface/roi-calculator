@@ -28,49 +28,58 @@
       {single: '103.22', monthly: '105'},
     ];
 
+    calculate(vm.revenueItems, 'revenue');
+    calculate(vm.expenseItems, 'expense');
+    profitCalculation();
+
     vm.add = function (item) {
       let newItem = {single: 0, monthly: 0};
       if (item.single) newItem.single = item.single;
       if (item.monthly) newItem.monthly = item.monthly;
-      if (item.$name === 'newRevenue') vm.revenueItems.push(newItem);
-      else vm.expenseItems.push(newItem);
-      $scope.newRevenue = {};
-      $scope.newExpense = {};
-    }
-    vm.removeRevenueItem = function (i) {
-      vm.revenueItems.splice(i, 1);
-      revenueCalculation();
-    }
-    vm.removeExpenseItem = function (i) {
-      vm.expenseItems.splice(i, 1);
-      expenseCalculation();
-    }
-
-    revenueCalculation();
-    expenseCalculation();
-
-    function revenueCalculation() {
-      vm.revenueSingle = vm.revenueMonthly = vm.revenueTotal = 0;
-      for (let i = 0; i < vm.revenueItems.length; i++) {
-        vm.revenueSingle += +vm.revenueItems[i].single;
+      if (item.$name === 'newRevenue') {
+        vm.revenueItems.push(newItem);
+        $scope.newRevenue.$setPristine();
+        $scope.newRevenue.single = $scope.newRevenue.monthly = 0;
+        calculate(vm.revenueItems, 'revenue');
       }
-      for (let i = 0; i < vm.revenueItems.length; i++) {
-        vm.revenueMonthly += +vm.revenueItems[i].monthly;
+      else {
+        vm.expenseItems.push(newItem);
+        $scope.newExpense.$setPristine();
+        $scope.newExpense.single = $scope.newExpense.monthly = 0;
+        calculate(vm.expenseItems, 'expense');
+      }
+    }
+
+    vm.remove = function (item, i) {
+      if (item.$name === 'newRevenue') {
+        vm.revenueItems.splice(i, 1);
+        calculate(vm.revenueItems, 'revenue');
+      }
+      else {
+        vm.expenseItems.splice(i, 1);
+        calculate(vm.expenseItems, 'expense');
+      }
+    }
+
+    function calculate(item, id) {
+      if (id === 'revenue') vm.revenueSingle = vm.revenueMonthly = vm.revenueTotal = 0;
+      else vm.expenseSingle = vm.expenseMonthly = vm.expenseTotal = 0;
+      for (let i = 0; i < item.length; i++) {
+        console.log(item[i].single);
+        if (id === 'revenue') {
+          vm.revenueSingle += +item[i].single;
+          vm.revenueMonthly += +item[i].monthly;
+        }
+        else {
+          vm.expenseSingle += +item[i].single;
+          vm.expenseMonthly += +item[i].monthly;
+        }
       }
       vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
-      profitCalculation();
-    };
-    function expenseCalculation() {
-      vm.expenseSingle = vm.expenseMonthly = vm.expenseTotal = 0;
-      for (let i = 0; i < vm.expenseItems.length; i++) {
-        vm.expenseSingle += +vm.expenseItems[i].single;
-      }
-      for (let i = 0; i < vm.expenseItems.length; i++) {
-        vm.expenseMonthly += +vm.expenseItems[i].monthly;
-      }
       vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
       profitCalculation();
     };
+
     function profitCalculation() {
       vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;

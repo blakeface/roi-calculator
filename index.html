@@ -32,7 +32,7 @@
             <td>{{item.single | currency}}</td>
             <td>{{item.monthly | currency}}</td>
             <td><span class="glyphicon glyphicon-trash"
-              ng-click="vm.removeRevenueItem($index)"></span></td>
+              ng-click="vm.remove(newRevenue, $index)"></span></td>
           </tr>
           <tr>
             <form name="newRevenue" ng-submit="vm.add(newRevenue)">
@@ -62,7 +62,7 @@
             <td>{{expense.single | currency}}</td>
             <td>{{expense.monthly | currency}}</td>
             <td><span class="glyphicon glyphicon-trash"
-              ng-click="vm.removeExpenseItem($index)"></span></td>
+              ng-click="vm.remove(newExpense, $index)"></span></td>
           </tr>
           <tr>
             <form name="newExpense" ng-submit="vm.add(newExpense)">
