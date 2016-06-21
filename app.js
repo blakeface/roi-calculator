@@ -10,13 +10,6 @@
   MainCtrl.$inject = ['$scope']
   function MainCtrl($scope) {
     let vm = this;
-    vm.revenueSingle = 0
-    vm.revenueMonthly = 0;
-    vm.revenueTotal = 0;
-
-    vm.expenseSingle = 0;
-    vm.expenseMonthly = 0;
-    vm.expenseTotal = 0;
 
     vm.revenueItems = [
       {single: '636.02', monthly: '300'},
@@ -39,13 +32,13 @@
       if (item.$name === 'newRevenue') {
         vm.revenueItems.push(newItem);
         $scope.newRevenue.$setPristine();
-        $scope.newRevenue.single = $scope.newRevenue.monthly = 0;
+        $scope.newRevenue.single = $scope.newRevenue.monthly = null;
         calculate(vm.revenueItems, 'revenue');
       }
       else {
         vm.expenseItems.push(newItem);
         $scope.newExpense.$setPristine();
-        $scope.newExpense.single = $scope.newExpense.monthly = 0;
+        $scope.newExpense.single = $scope.newExpense.monthly = null;
         calculate(vm.expenseItems, 'expense');
       }
     }
@@ -65,7 +58,6 @@
       if (id === 'revenue') vm.revenueSingle = vm.revenueMonthly = vm.revenueTotal = 0;
       else vm.expenseSingle = vm.expenseMonthly = vm.expenseTotal = 0;
       for (let i = 0; i < item.length; i++) {
-        console.log(item[i].single);
         if (id === 'revenue') {
           vm.revenueSingle += +item[i].single;
           vm.revenueMonthly += +item[i].monthly;
