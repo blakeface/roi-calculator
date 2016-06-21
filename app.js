@@ -28,21 +28,14 @@
       {single: '103.22', monthly: '105'},
     ];
 
-    vm.addRevenueItem = function (argument) {
-      let newRevenue = {single: 0, monthly: 0};
-      if ($scope.newRevenue.single) newRevenue.single = $scope.newRevenue.single;
-      if ($scope.newRevenue.monthly) newRevenue.monthly = $scope.newRevenue.monthly;
-      vm.revenueItems.push(newRevenue);
+    vm.add = function (item) {
+      let newItem = {single: 0, monthly: 0};
+      if (item.single) newItem.single = item.single;
+      if (item.monthly) newItem.monthly = item.monthly;
+      if (item.$name === 'newRevenue') vm.revenueItems.push(newItem);
+      else vm.expenseItems.push(newItem);
       $scope.newRevenue = {};
-      revenueCalculation();
-    }
-    vm.addExpenseItem = function () {
-      let newExpense = {single: 0, monthly: 0};
-      if ($scope.newExpense.single) newExpense.single = $scope.newExpense.single;
-      if ($scope.newExpense.monthly) newExpense.monthly = $scope.newExpense.monthly;
-      vm.expenseItems.push(newExpense);
       $scope.newExpense = {};
-      expenseCalculation();
     }
     vm.removeRevenueItem = function (i) {
       vm.revenueItems.splice(i, 1);
@@ -79,7 +72,7 @@
       profitCalculation();
     };
     function profitCalculation() {
-g      vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
+      vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
       vm.margin = vm.profitsTotal / vm.revenueTotal;
       vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;

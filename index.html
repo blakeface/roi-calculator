@@ -35,7 +35,7 @@
               ng-click="vm.removeRevenueItem($index)"></span></td>
           </tr>
           <tr>
-            <form name="newRevenue" ng-submit="vm.addRevenueItem()">
+            <form name="newRevenue" ng-submit="vm.add(newRevenue)">
               <th>New Revenue Item</th>
               <td><input type="number" name="newRevenue.single"
                 ng-model="newRevenue.single"></td>
@@ -65,7 +65,7 @@
               ng-click="vm.removeExpenseItem($index)"></span></td>
           </tr>
           <tr>
-            <form name="newExpense" ng-submit="vm.addExpenseItem()">
+            <form name="newExpense" ng-submit="vm.add(newExpense)">
               <th>New Expense Item</th>
               <td><input type="number" name="newExpense.single"
                 ng-model="newExpense.single"></td>
