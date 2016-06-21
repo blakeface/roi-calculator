@@ -38,6 +38,7 @@
 
       vm.revenueItems.push(newRevenue);
       $scope.newRevenue = {};
+      revenueCalculations();
     }
     vm.addExpenseItem = function () {
       let newExpense = {};
@@ -47,6 +48,7 @@
       else newExpense.monthly = 0;
       vm.expenseItems.push(newExpense);
       $scope.newExpense = {};
+      expenseCalculations();
     }
     vm.removeRevenueItem = function (i) {
       vm.revenueItems.splice(i, 1);
@@ -55,7 +57,10 @@
       vm.expenseItems.splice(i, 1);
     }
 
-    $scope.$watch('vm.revenueItems', function () {
+    revenueCalculations();
+    expenseCalculations();
+
+    function revenueCalculations() {
       for (let i = 0; i < vm.revenueItems.length; i++) {
         vm.revenueSingle += +vm.revenueItems[i].single;
       }
@@ -67,9 +72,9 @@
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
       vm.margin = vm.profitsTotal / vm.revenueTotal;
       vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
-    }, true);
+    };
 
-    $scope.$watch('vm.expenseItems', function () {
+    function expenseCalculations() {
       for (let i = 0; i < vm.expenseItems.length; i++) {
         vm.expenseSingle += +vm.expenseItems[i].single;
       }
@@ -81,6 +86,6 @@
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
       vm.margin = vm.profitsTotal / vm.revenueTotal;
       vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
-    });
+    };
   }
 })()
