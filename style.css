@@ -31,3 +31,25 @@
 h3 {
   margin-bottom: 0px;
 }
+
+.container {
+  max-width: 1000px;
+}
+
+th, td {
+  width: 215px;
+}
+
+input {
+  min-width: 80px;
+  max-width: 150px;
+  width: 100%;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}

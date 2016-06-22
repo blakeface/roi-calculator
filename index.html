@@ -24,26 +24,27 @@
         <thead>
           <tr>
             <th></th>
-            <th>One-Time</th>
-            <th>Monthly</th>
+            <th class="align-right">One-Time</th>
+            <th class="align-right">Monthly</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in vm.revenueItems">
             <th>Item {{$index + 1}}</th>
-            <td>{{item.single | currency}}</td>
-            <td>{{item.monthly | currency}}</td>
-            <td><span class="glyphicon glyphicon-trash"
+            <td class="align-right">{{item.single | currency}}</td>
+            <td class="align-right">{{item.monthly | currency}}</td>
+            <td class="align-center"><span class="glyphicon glyphicon-trash"
               ng-click="vm.remove(newRevenue, $index)"></span></td>
           </tr>
           <tr>
-            <form name="newRevenue" ng-submit="vm.add(newRevenue)">
+            <form name="newRevenue" ng-submit="vm.add(newRevenue)" novalidate>
               <th>New Revenue Item</th>
-              <td><input type="number" name="newRevenue.single"
+              <td class="align-right"><input type="number" name="newRevenue.single"
                 ng-model="newRevenue.single"></td>
-              <td><input type="number" name="newRevenue.monthly"
+              <td class="align-right"><input type="number" name="newRevenue.monthly"
                 ng-model="newRevenue.monthly"></td>
-              <td><input type="submit" class="btn btn-primary-outline" value="Add Revenue Item"></td>
+              <td class="align-center"><input type="submit" class="btn btn-primary-outline" value="Add Revenue Item"></td>
             </form>
           </tr>
         </tbody>
@@ -54,26 +55,27 @@
         <thead>
           <tr>
             <th></th>
-            <th>One-Time</th>
-            <th>Monthly</th>
+            <th class="align-right">One-Time</th>
+            <th class="align-right">Monthly</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="expense in vm.expenseItems">
             <th>Expense {{$index + 1}}</th>
-            <td>{{expense.single | currency}}</td>
-            <td>{{expense.monthly | currency}}</td>
-            <td><span class="glyphicon glyphicon-trash"
+            <td class="align-right">{{expense.single | currency}}</td>
+            <td class="align-right">{{expense.monthly | currency}}</td>
+            <td class="align-center"><span class="glyphicon glyphicon-trash"
               ng-click="vm.remove(newExpense, $index)"></span></td>
           </tr>
           <tr>
-            <form name="newExpense" ng-submit="vm.add(newExpense)">
+            <form name="newExpense" ng-submit="vm.add(newExpense)" novalidate>
               <th>New Expense Item</th>
-              <td><input type="number" name="newExpense.single"
+              <td class="align-right"><input type="number" name="newExpense.single"
                 ng-model="newExpense.single"></td>
-              <td><input type="number" name="newExpense.monthly"
+              <td class="align-right"><input type="number" name="newExpense.monthly"
                 ng-model="newExpense.monthly"></td>
-              <td><input type="submit" class="btn btn-primary-outline" value="Add Expense Item"></td>
+              <td class="align-center"><input type="submit" class="btn btn-primary-outline" value="Add Expense Item"></td>
             </form>
           </tr>
         </tbody>
@@ -84,42 +86,42 @@
       <thead>
         <tr>
           <th></th>
-          <th>One-Time</th>
-          <th>Monthly</th>
-          <th>Total</th>
+          <th class="align-right">One-Time</th>
+          <th class="align-right">Monthly</th>
+          <th class="align-right">Total</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>Revenue</th>
-          <td>{{vm.revenueSingle | currency}}</td>
-          <td>{{vm.revenueMonthly | currency}}</td>
-          <td>{{vm.revenueTotal | currency}}</td>
+          <td class="align-right">{{vm.revenueSingle | currency}}</td>
+          <td class="align-right">{{vm.revenueMonthly | currency}}</td>
+          <td class="align-right">{{vm.revenueTotal | currency}}</td>
         </tr>
         <tr>
           <th>Expenses</th>
-          <td>{{vm.expenseSingle | currency}}</td>
-          <td>{{vm.expenseMonthly | currency}}</td>
-          <td>{{vm.expenseTotal | currency}}</td>
-        </tr>
-        <tr>
-          <th>Contribution Profits</th>
-          <td></td>
-          <td>{{vm.profitsMonthly | currency}}</td>
-          <td>{{vm.profitsTotal | currency}}</td>
+          <td class="align-right">{{vm.expenseSingle | currency}}</td>
+          <td class="align-right">{{vm.expenseMonthly | currency}}</td>
+          <td class="align-right">{{vm.expenseTotal | currency}}</td>
         </tr>
         <tr id="break-row"></tr>
         <tr>
           <td></td>
-          <td></td>
-          <th>Contribution Margin</th>
-          <td>{{vm.margin | number:2}}%</td>
+          <th class="align-right">Contribution Profits</th>
+          <td class="align-right">{{vm.profitsMonthly | currency}}</td>
+          <td class="align-right">{{vm.profitsTotal | currency}}</td>
         </tr>
         <tr>
           <td></td>
+          <th class="align-right">Contribution Margin</th>
           <td></td>
-          <th>Capital ROI (Months)</th>
-          <td>{{vm.roi | number:1}}</td>
+          <td class="align-right">{{vm.margin | number:2}}%</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th class="align-right">Capital ROI (Months)</th>
+          <td></td>
+          <td class="align-right">{{vm.roi | number:1}}</td>
         </tr>
     </tbody>
     </table>

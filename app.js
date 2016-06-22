@@ -41,6 +41,7 @@
         $scope.newExpense.single = $scope.newExpense.monthly = null;
         calculate(vm.expenseItems, 'expense');
       }
+      window.localStorage
     };
 
     vm.remove = function (item, i) {
@@ -75,7 +76,7 @@
     function profitCalculation() {
       vm.profitsMonthly = vm.revenueMonthly - vm.expenseMonthly;
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
-      vm.margin = vm.profitsTotal / vm.revenueTotal;
+      vm.margin = (vm.profitsTotal / vm.revenueTotal) * 100;
       vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
     };
   }
