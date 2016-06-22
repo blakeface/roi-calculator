@@ -10,3 +10,24 @@
 #break-row {
   height: 30px;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: -webkit-linear-gradient(left top, #F15E22, #F58120);
+  background: -o-linear-gradient(left top, #F15E22, #F58120);
+  background: -moz-linear-gradient(left top, #F15E22, #F58120);
+  height: 80px;
+}
+
+.header h1 {
+  font-family: Kanit;
+  font-weight: 800;
+  color: white;
+  margin: 0px;
+}
+
+h3 {
+  margin-bottom: 0px;
+}

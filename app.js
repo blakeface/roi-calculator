@@ -7,7 +7,7 @@
   .module('roi', dependencies)
   .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope']
+  MainCtrl.$inject = ['$scope'];
   function MainCtrl($scope) {
     let vm = this;
 
@@ -41,7 +41,7 @@
         $scope.newExpense.single = $scope.newExpense.monthly = null;
         calculate(vm.expenseItems, 'expense');
       }
-    }
+    };
 
     vm.remove = function (item, i) {
       if (item.$name === 'newRevenue') {
@@ -52,7 +52,7 @@
         vm.expenseItems.splice(i, 1);
         calculate(vm.expenseItems, 'expense');
       }
-    }
+    };
 
     function calculate(item, id) {
       if (id === 'revenue') vm.revenueSingle = vm.revenueMonthly = vm.revenueTotal = 0;
@@ -67,8 +67,8 @@
           vm.expenseMonthly += +item[i].monthly;
         }
       }
-      vm.revenueTotal = vm.revenueSingle + vm.revenueMonthly;
-      vm.expenseTotal = vm.expenseSingle + vm.expenseMonthly;
+      vm.revenueTotal = vm.revenueSingle + (vm.revenueMonthly * 12);
+      vm.expenseTotal = vm.expenseSingle + (vm.expenseMonthly * 12);
       profitCalculation();
     };
 
@@ -77,6 +77,6 @@
       vm.profitsTotal = vm.revenueTotal - vm.expenseTotal;
       vm.margin = vm.profitsTotal / vm.revenueTotal;
       vm.roi = (vm.expenseSingle - vm.revenueSingle) / vm.profitsMonthly;
-    }
+    };
   }
-})()
+})();
