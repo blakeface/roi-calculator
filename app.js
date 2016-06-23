@@ -1,25 +1,34 @@
 'use strict';
 
 (function () {
-  const dependencies = [];
+  const dependencies = ['ngStorage'];
 
   angular
   .module('roi', dependencies)
   .controller('MainCtrl', MainCtrl);
 
-  MainCtrl.$inject = ['$scope'];
-  function MainCtrl($scope) {
+  MainCtrl.$inject = ['$scope', '$localStorage'];
+  function MainCtrl($scope, $localStorage) {
     let vm = this;
 
-    vm.revenueItems = [
-      {single: '636.02', monthly: '300'},
-      {single: '539.25', monthly: '250'},
-      {single: '200.99', monthly: '100'},
-    ];
-    vm.expenseItems = [
-      {single: '79.92', monthly: '75'},
-      {single: '103.22', monthly: '105'},
-    ];
+    if ($localStorage.revItems) {
+      vm.revenueItems = $localStorage.revItems
+    } else {
+      vm.revenueItems = [
+        {single: '636.02', monthly: '300'},
+        {single: '539.25', monthly: '250'},
+        {single: '200.99', monthly: '100'},
+      ];
+    }
+
+    if ($localStorage.expItems) {
+      vm.expenseItems = $localStorage.expItems
+    } else {
+      vm.expenseItems = [
+        {single: '79.92', monthly: '75'},
+        {single: '103.22', monthly: '105'},
+      ];
+    }
 
     calculate(vm.revenueItems, 'revenue');
     calculate(vm.expenseItems, 'expense');
@@ -33,24 +42,27 @@
         vm.revenueItems.push(newItem);
         $scope.newRevenue.$setPristine();
         $scope.newRevenue.single = $scope.newRevenue.monthly = null;
+        $localStorage.revItems = vm.revenueItems;
         calculate(vm.revenueItems, 'revenue');
       }
       else {
         vm.expenseItems.push(newItem);
         $scope.newExpense.$setPristine();
         $scope.newExpense.single = $scope.newExpense.monthly = null;
+        $localStorage.expItems = vm.expenseItems;
         calculate(vm.expenseItems, 'expense');
       }
-      window.localStorage
     };
 
     vm.remove = function (item, i) {
       if (item.$name === 'newRevenue') {
         vm.revenueItems.splice(i, 1);
+        $localStorage.revItems = vm.revenueItems;
         calculate(vm.revenueItems, 'revenue');
       }
       else {
         vm.expenseItems.splice(i, 1);
+        $localStorage.expItems = vm.expenseItems;
         calculate(vm.expenseItems, 'expense');
       }
     };
