@@ -1,3 +1,7 @@
 # roi-calculator
 
-A simple angular calculator created for a job application.
+An skinny financial tool to calculate ROIs.
+
+Built with angular.
+
+Also on JSBin @ http://jsbin.com/sosozo
